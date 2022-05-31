@@ -9,6 +9,7 @@ import LocationDetails from "../Home/LocationDetails/LocationDetails";
 
 const Header = () => {
   const [searchText, setSearchText] = useState("");
+  const [selectText, setSelectText] = useState("");
   const [clicked, setClicked] = useState(false);
   const [resultShow, setResultShow] = useState(false);
   const locations = useSelector((state) => state.location.searchResult);
@@ -34,8 +35,10 @@ const Header = () => {
         onFocus={(e) => {
           setClicked(true);
           setResultShow(false);
+          setSelectText("");
         }}
         onBlur={(e) => setClicked(false)}
+        value={selectText ? selectText : searchText}
         required
       />
       {resultShow ? (
@@ -49,7 +52,8 @@ const Header = () => {
                 className="d-block my-1 border border-0 text-start w-100 overflow-y-scroll p-1"
                 onClick={() => {
                   dispatch(findLocation(location.id));
-                  setResultShow(true)
+                  setResultShow(true);
+                  setSelectText(location.address);
                 }}
               >
                 <h5>{location.address}</h5>

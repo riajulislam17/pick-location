@@ -4,18 +4,15 @@ import { useSelector } from "react-redux";
 const LocationDetails = () => {
   const locations = useSelector((state) => state.location.findResult);
   return (
-    <div className="pt-5">
+    <div className="pt-5 text-end px-2">
       {locations &&
         locations.map((location) => (
-          <div
-            key={location.id}
-            className="d-block"
-          >
+          <div key={location.id} className="d-block">
             <h5>{location.address}</h5>
             <h6>
               {location.address}, {location.area}, {location.city}
             </h6>
-            <p>Post Code : {location.postCode}</p>
+            <p className="m-0">Post Code : {location.postCode}</p>
             <p>Place Code : {location.uCode}</p>
           </div>
         ))}

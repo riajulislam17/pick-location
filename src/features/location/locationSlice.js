@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+const API_KEY = "MzQwNzo3WVdJRkVEQTdZ";
 
 export const searchLocation = createAsyncThunk(
   "location/searchLocation",
   async (searchText) => {
-    const response = await fetch(
-      `https://barikoi.xyz/v1/api/search/autocomplete/MzQwNzo3WVdJRkVEQTdZ/place?q=${searchText}`
-    ).then((res) => res.json());
+    const url = `https://barikoi.xyz/v1/api/search/autocomplete/${API_KEY}/place?q=${searchText}`;
+    const response = await fetch(url).then((res) => res.json());
     return response;
   }
 );
@@ -19,10 +19,9 @@ export const locationSlice = createSlice({
   },
   reducers: {
     findLocation: (state, actions) => {
-      state.findResult = state.searchResult.filter((location) => {
-        return location.id === actions.payload;
-      });
-      console.log(state.findResult)
+      state.findResult = state.searchResult.filter(
+        (location) => location.id === actions.payload
+      );
     },
   },
   extraReducers: (builder) => {
