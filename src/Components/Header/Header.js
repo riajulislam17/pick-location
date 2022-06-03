@@ -23,8 +23,8 @@ const Header = () => {
 
   return (
     <div>
-      <h3>
-        Bari<span className="text-success">koi</span>
+      <h3 className="fw-bold">
+        Pick <span className="text-success">Location</span>
       </h3>
 
       <input
@@ -32,7 +32,7 @@ const Header = () => {
         className={clicked ? "onClicked" : "offClicked"}
         placeholder="Search Location."
         onChange={handleSearch}
-        onFocus={(e) => {
+        onFocus={() => {
           setClicked(true);
           setResultShow(false);
           setSelectText("");
@@ -44,7 +44,8 @@ const Header = () => {
       {resultShow ? (
         <LocationDetails></LocationDetails>
       ) : (
-        <div className="h-75 wrap shadow">
+        <div className="overflow-auto" style={{maxHeight: "400px"}}>
+          <div className="h-75 shadow">
           {locations &&
             locations.map((location) => (
               <button
@@ -65,6 +66,7 @@ const Header = () => {
                 </span>
               </button>
             ))}
+        </div>
         </div>
       )}
     </div>

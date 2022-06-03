@@ -16,12 +16,13 @@ const MapBox = () => {
             latitude: location[0].latitude,
             zoom: 15,
           }}
-          style={{ width: "100%", height: 600, position: "relative" }}
+          style={{ width: "100%", height: 600 }}
           mapStyle="mapbox://styles/mapbox/streets-v11"
           mapboxAccessToken={MAPBOX_TOKEN}
           // mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         >
           <Marker
+            style={{ position: "absolute" }}
             longitude={location[0].longitude}
             latitude={location[0].latitude}
             color="red"
